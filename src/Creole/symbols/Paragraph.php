@@ -6,8 +6,21 @@ class Paragraph
 {
     public static function consume(&$text)
     {
-        NoWikiBlock::consume($text);
-        if ('{{{' == substr($text, 0, 3)) {
+        $paragraphTypes = array(
+            'PreformattedText',
+            'BlankParagraph',
+            'Heading',
+            'HorizontalRule',
+            'UnorderedList',
+            'OrderedList',
+            'Table',
+            'TextParagraph',
+        );
+        
+        foreach ($paragraphTypes as $paragraphType) {
+            if (!is_null($paragraph = $paragraphType::consume($text))) {
+                return $paragraph;
+            }
         }
     }
     
