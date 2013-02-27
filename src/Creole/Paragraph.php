@@ -1,13 +1,13 @@
 <?php
 
-namespace Creole\Symbol;
+namespace Creole;
 
 class Paragraph
 {
     public static function consume(&$text)
     {
         $paragraphTypes = array(
-            'PreformattedText',
+            'PreformattedBlock',
             'BlankParagraph',
             'Heading',
             'HorizontalRule',
@@ -18,12 +18,13 @@ class Paragraph
         );
         
         foreach ($paragraphTypes as $paragraphType) {
+            $paragraphType = '\Creole\\' . $paragraphType;
             if (!is_null($paragraph = $paragraphType::consume($text))) {
                 return $paragraph;
             }
         }
     }
-    
+    /*
     public function __construct($text)
     {
         if ('{{{' == substr($text, 0, 3)) {
@@ -53,4 +54,5 @@ class Paragraph
                 }
         }
     }
+    */
 }

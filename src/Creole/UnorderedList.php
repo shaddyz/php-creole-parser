@@ -1,11 +1,15 @@
 <?php
 
-namespace Creole\Symbol;
+namespace Creole;
 
 class UnorderedList
 {
     protected $markup = '*';
-    protected $level
+    protected $level;
+    
+    public static function consume(&$text)
+    {
+    }
     
     public function __construct($text)
     {

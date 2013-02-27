@@ -1,6 +1,6 @@
 <?php
 
-namespace Creole\Symbol;
+namespace Creole;
 
 class BlankParagraph
 {
@@ -23,5 +23,15 @@ class BlankParagraph
         $blankParagraph = new self(substr($text, 0, $i));
         $text = substr($text, $i);
         return $blankParagraph;
+    }
+    
+    public function __construct($text)
+    {
+        $this->text = $text;
+    }
+    
+    public function toHtml()
+    {
+        return '<p>' . $this->text . '</p>';
     }
 }

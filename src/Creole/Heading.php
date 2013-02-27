@@ -1,6 +1,6 @@
 <?php
 
-namespace Creole\Symbol;
+namespace Creole;
 
 class Heading
 {
@@ -24,7 +24,7 @@ class Heading
         }
         
         $heading = new self(substr($text, 0, $i));
-        $text = substr($text, $i);
+        $text = substr($text, $i + 1);
         return $heading;
     }
     
@@ -45,6 +45,6 @@ class Heading
     
     public function toHtml()
     {
-        return '<h' . $this->level . '>' . $this->text . '</h' . $this->level . '>';
+        return '<h' . $this->level . '>' . $this->text . '</h' . $this->level . '>' . "\n";
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Creole\Symbol;
+namespace Creole;
 
 class HorizontalRule
 {

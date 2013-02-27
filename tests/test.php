@@ -1,17 +1,22 @@
-<!DOCTYPE html>
 <?php
 
 include '../vendor/autoload.php';
 
-$parser = new \Creole\Parser();
-$wikitext = $parser->parse('creole1.0test.txt');
-
-?>
+$wikiString = file_get_contents('creole1.0test.txt');
+$wikiText = new \Creole\Page($wikiString);
+$htmlHead = '<!DOCTYPE html>
 <html>
     <head>
         <title>Creole Parser Test</title>
     </head>
-    <body>
-        <?php print $wikitext->toHtml() ?>
-    </body>
-</html>
+    <body>';
+$htmlTail = '</body>
+</html>';
+
+$outFile = fopen('test.html', 'wb');
+fwrite($outFile, $htmlHead);
+fwrite($outFile, $wikiText->toHtml());
+fwrite($outFile, $htmlTail);
+fclose($outFile);
+
+print 'generated test.html' . "\n";
