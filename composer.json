@@ -1,0 +1,8 @@
+{
+    "autoload": {
+        "psr-0": {"Creole": "src/"}
+    },
+    "require": {
+        "php": ">=5.3.3"
+    }
+}

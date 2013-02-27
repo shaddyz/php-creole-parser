@@ -1,4 +1,5 @@
 # Composer Artifacts
 [Vv]endor/
 composer.lock
+composer.phar
 *~
