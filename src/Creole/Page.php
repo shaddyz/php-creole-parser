@@ -13,18 +13,31 @@ class Page
         $text = ltrim($text);
         $text = str_replace(array("\r\n", "\r"), "\n", $text);
         
+        $paragraphTypes = array(
+            'PreformattedBlock',
+            'BlankParagraph',
+            'Heading',
+            'HorizontalRule',
+            'UnorderedList',
+            'OrderedList',
+            'Table',
+            'TextParagraph',
+        );
+        
         #while ('' != $text) {
         for ($i = 0; $i < 100; $i++) {
-            $paragraph = Paragraph::consume($text);
-            if (!is_null($paragraph)) {
-                $this->paragraphs[] = $paragraph;
-                $j = 0;
-                while ("\n" == $text[$j]) {
-                    $j++;
-                }
-                $text = substr($text, $j);
-                for ($j; $j > 0; $j--) {
-                    $this->paragraphs[] = new LineBreak();
+            foreach ($paragraphTypes as $paragraphType) {
+                $paragraphType = '\Creole\\' . $paragraphType;
+                if (!is_null($paragraph = $paragraphType::consume($text))) {
+                    $this->paragraphs[] = $paragraph;
+                    $j = 0;
+                    while ("\n" == $text[$j]) {
+                        $j++;
+                    }
+                    $text = substr($text, $j);
+                    for ($j; $j > 0; $j--) {
+                        $this->paragraphs[] = new LineBreak();
+                    }
                 }
             }
         }

@@ -47,8 +47,17 @@ class TextLine
                 return array();
         }
         
+        $textElementTypes = array(
+            'UnformattedText',
+            'BoldText',
+            'ItalicText',
+            'Link',
+            'Image',
+            'PreformattedText',
+        );
+        
         $textElements = array();
-        while (!is_null($textElement = TextLine::consume($text))) {
+        while (!is_null($textElement = TextElement::consume($text))) {
             $textElements[] = $textElement;
         }
         
@@ -65,8 +74,8 @@ class TextLine
     public function toHtml()
     {
         $text = '';
-        foreach ($this->textLines as $textLine) {
-            $text .= $textLine->toHtml();
+        foreach ($this->textElements as $textElement) {
+            $text .= $textElement->toHtml();
         }
         return $text;
     }
