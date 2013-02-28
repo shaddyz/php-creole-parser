@@ -2,37 +2,64 @@
 
 namespace Creole;
 
-class BoldText extends FormattedText
+class BoldText
 {
+    protected $textElements = array();
+    
     public static function consume(&$text)
     {
-        if ('**' != substr($text, 0, 2)) {
+        if (!$textElements = self::consumeTextElements($text)) {
             return null;
         }
         
-        $textLength = strlen($text);
-        for ($i = 2; $i < $textLength; $i++) {
-            if ('**' == substr($text, 0, 2)) {
-                $i++;
-                break;
-            } elseif ('~**' == substr($text, 0, 3)) {
-                $i += 2;
-            }
-        }
-        
-        $boldText = new self(substr($text, 0, $i));
-        $text = substr($text, $i);
+        $boldText = new self();
+        $boldText->textElements = $textElements;
         return $boldText;
     }
     
-    public function __construct($text)
+    protected static function consumeTextElements(&$text)
     {
-        $text = substr($text, 2);
-        if ('**' == substr($text, -2)) {
-            $text = substr($text, 0, strlen($text) - 2);
+        if ('**' != substr($text, 0, 2)) {
+            return array();
         }
         
-        $this->consumeTextElements($text);
+        $text = substr($text, 2);
+        $textElementTypes = array(
+            'UnformattedText',
+            'ItalicText',
+            'Link',
+        );
+        
+        $textElements = array();
+        do {
+            foreach ($textElementTypes as $textElementType) {
+                $textElementType = '\Creole\\' . $textElementType;
+                if (!is_null($textElement = $textElementType::consume($text))) {
+                    $textElements[] = $textElement;
+                    break;
+                }
+                if ('**' == substr($text, 0, 2)) {
+                    $text = substr($text, 2);
+                    break;
+                } elseif (TextParagraph::isParagraphBreak(substr($text, 0, 4))) {
+                    break;
+                } elseif ("\n" == $text[0]) {
+                    $text = substr($text, 1);
+                    $textElement = new UnformattedText(' ');
+                    $textElements[] = $textElement;
+                    break;
+                }
+            }
+        } while (!is_null($textElement));
+        
+        return $textElements;
+    }
+    
+    public function __construct($text = null)
+    {
+        if (!is_null($text)) {
+            $this->textElements = $this->consumeTextElements($text);
+        }
     }
     
     public function toHtml()

@@ -19,32 +19,8 @@ class TextLine
     
     protected static function consumeTextElements(&$text)
     {
-        switch ($text[0]) {
-            case '*':
-                if ($text[1] == '*') {
-                    break;
-                }
-                // no break
-            case '#':
-            case '=':
-            case '|':
-            case "\n":
-            case '~': // ESCAPE
-                return array();
-                // no break
-        }
-        switch (substr($text, 0, 2)) {
-            case '//':
-            case '[[':
-            case '{{':
-                return array();
-                // no break
-        }
-        if (substr($text, 0, 4) == '\\\\') {
-                return array();
-        }
-        if (substr($text, 0, 4) == "{{{\n") {
-                return array();
+        if (TextParagraph::isParagraphBreak(substr($text, 0, 4))) {
+            return array();
         }
         
         $textElementTypes = array(
@@ -52,13 +28,24 @@ class TextLine
             'BoldText',
             'ItalicText',
             'Link',
-            'Image',
+            //'Image',
             'PreformattedText',
         );
         
         $textElements = array();
-        while (!is_null($textElement = TextElement::consume($text))) {
-            $textElements[] = $textElement;
+        do {
+            foreach ($textElementTypes as $textElementType) {
+                $textElementType = '\Creole\\' . $textElementType;
+                if (!is_null($textElement = $textElementType::consume($text))) {
+                    $textElements[] = $textElement;
+                    break;
+                }
+            }
+        } while (!is_null($textElement));
+        
+        if ("\n" == $text[0] and !TextParagraph::isParagraphBreak(substr($text, 0, 4))) {
+            $textElements[] = new UnformattedText(' ');
+            $text = substr($text, 1);
         }
         
         return $textElements;

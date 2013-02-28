@@ -17,6 +17,36 @@ class TextParagraph
         return $textParagraph;
     }
     
+    public static function isParagraphBreak($text)
+    {
+        if ($text === '') {
+            return true;
+        }
+        switch ($text[0]) {
+            case '#':
+            case '|':
+            case '=':
+                return true;
+                // no break
+            case "\n":
+                if (isset($text[1]) and "\n" == $text[1]) {
+                    return true;
+                }
+                break;
+            case '*':
+                if (isset($text[1]) and '*' != $text[1]) {
+                    return true;
+                } else {
+                    return false;
+                }
+                // no break
+        }
+        if ("{{{\n" == substr($text, 0, 4)) {
+            return true;
+        }
+        return false;
+    }
+    
     protected static function consumeTextLines(&$text)
     {
         $textLines = array();

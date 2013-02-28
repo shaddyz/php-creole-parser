@@ -9,8 +9,9 @@ $htmlHead = '<!DOCTYPE html>
     <head>
         <title>Creole Parser Test</title>
     </head>
-    <body>';
-$htmlTail = '</body>
+    <body>
+';
+$htmlTail = '    </body>
 </html>';
 
 $outFile = fopen('test.html', 'wb');

@@ -3,39 +3,29 @@
     <head>
         <title>Creole Parser Test</title>
     </head>
-    <body><h1> Top-level heading (1)</h1>
-<h2> This a test for creole 0.1 (2)</h2>
-<h3> This is a Subheading (3)</h3>
-<h4> Subsub (4)</h4>
-<h5> Subsubsub (5)</h5>
-<br/>
+    <body>
+<h1>Top-level heading (1)</h1>
+<h2>This a test for creole 0.1 (2)</h2>
+<h3>This is a Subheading (3)</h3>
+<h4>Subsub (4)</h4>
+<h5>Subsubsub (5)</h5>
 <p>The ending equal signs should not be displayed:</p>
-<br/>
-<br/>
-<h1> Top-level heading (1) </h1>
-<h2> This a test for creole 0.1 (2) </h2>
-<h3> This is a Subheading (3) </h3>
-<h4> Subsub (4) </h4>
-<h5> Subsubsub (5) </h5>
-<br/>
-<br/>
-<p>You can make things **bold** or //italic// or **//both//** or //**both**//.</p>
-<br/>
-<br/>
-<p>Character formatting extends across line breaks: **bold,</p>
-<br/>
-<p>this is still bold. This line deliberately does not end in star-star.</p>
-<br/>
-<br/>
+<h1>Top-level heading (1)</h1>
+<h2>This a test for creole 0.1 (2)</h2>
+<h3>This is a Subheading (3)</h3>
+<h4>Subsub (4)</h4>
+<h5>Subsubsub (5)</h5>
+<p>You can make things <strong>bold</strong> or <em>italic</em> or <strong><em>both</em></strong> or <strong>both</strong><em>.</em></p>
+<p>Character formatting extends across line breaks: <strong>bold, this is still bold. This line deliberately does not end in star-star.</strong></p>
 <p>Not bold. Character formatting does not cross paragraph boundaries.</p>
-<br/>
-<br/>
-<p>You can use [[internal links]] or [[http://www.wikicreole.org|external links]],</p>
-<br/>
-<p>give the link a [[internal links|different]] name.</p>
-<br/>
-<br/>
-<p>Here's another sentence: This wisdom is taken from [[Ward Cunningham's]]</p>
-<br/>
-</body>
+<p>You can use <a href="internal links">internal links</a> or <a href="http://www.wikicreole.org">external links</a>, give the link a <a href="internal links">different</a> name.</p>
+<p>Here's another sentence: This wisdom is taken from <a href="Ward Cunningham's">Ward Cunningham's</a> <a href="http://www.c2.com/doc/wikisym/WikiSym2006.pdf">Presentation at the Wikisym 06</a>.</p>
+<p>Here's a external link without a description: <a href="http://www.wikicreole.org">http://www.wikicreole.org</a></p>
+<p>Be careful that italic links are rendered properly:  <em><a href="http://my.book.example/">My Book Title</a></em> </p>
+<p>Free links without braces should be rendered as well, like http:<em>www.wikicreole.org/ and http:</em>www.wikicreole.org/users/~example. </p>
+<p>Creole1.0 specifies that http:<em>bar and ftp:</em>bar should not render italic, something like foo:<em>bar should render as italic.</em></p>
+<p>You can use this to draw a line to separate the page: ----</p>
+<p>You can use lists, start it at the first column for now, please...</p>
+<p>unnumbered lists are like </p>
+    </body>
 </html>

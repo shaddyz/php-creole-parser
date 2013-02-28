@@ -35,9 +35,6 @@ class Page
                         $j++;
                     }
                     $text = substr($text, $j);
-                    for ($j; $j > 0; $j--) {
-                        $this->paragraphs[] = new LineBreak();
-                    }
                 }
             }
         }

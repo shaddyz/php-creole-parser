@@ -6,7 +6,12 @@ class LineBreak
 {
     public static function consume(&$text)
     {
-        return null;
+        if ('\\\\' != substr($text, 0, 2)) {
+            return null;
+        }
+        
+        $text = substr($text, 2);
+        return new self();
     }
     
     public function __construct($text = null)

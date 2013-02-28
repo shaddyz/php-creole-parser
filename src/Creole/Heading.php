@@ -37,7 +37,7 @@ class Heading
             if ('=' == $text[$i]) {
                 $this->level++;
             } else {
-                $this->text = substr($text, $i);
+                $this->text = trim(substr($text, $i));
                 break;
             }
         }
