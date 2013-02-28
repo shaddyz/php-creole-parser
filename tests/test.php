@@ -2,7 +2,13 @@
 
 include '../vendor/autoload.php';
 
-$wikiString = file_get_contents('creole1.0test.txt');
+if (isset($argv[1])) {
+    $testFile = strtolower($argv[1]) . '.txt';
+} else {
+    $textFile = 'creole1.0test.txt';
+}
+
+$wikiString = file_get_contents($testFile);
 $wikiText = new \Creole\Page($wikiString);
 $htmlHead = '<!DOCTYPE html>
 <html>

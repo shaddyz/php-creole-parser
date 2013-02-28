@@ -24,8 +24,8 @@ class Page
             'TextParagraph',
         );
         
-        #while ('' != $text) {
-        for ($i = 0; $i < 100; $i++) {
+        while ('' != $text) {
+        #for ($i = 0; $i < 100; $i++) {
             foreach ($paragraphTypes as $paragraphType) {
                 $paragraphType = '\Creole\\' . $paragraphType;
                 if (!is_null($paragraph = $paragraphType::consume($text))) {
