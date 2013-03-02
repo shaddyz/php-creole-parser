@@ -24,17 +24,19 @@ class Page
             'TextParagraph',
         );
         
-        while ('' != $text) {
-        #for ($i = 0; $i < 100; $i++) {
+        $done = false;
+        while (!$done and '' != $text) {
+            $done = true;
             foreach ($paragraphTypes as $paragraphType) {
                 $paragraphType = '\Creole\\' . $paragraphType;
                 if (!is_null($paragraph = $paragraphType::consume($text))) {
                     $this->paragraphs[] = $paragraph;
                     $j = 0;
-                    while ("\n" == $text[$j]) {
+                    while (isset($text[$j]) and "\n" == $text[$j]) {
                         $j++;
                     }
                     $text = substr($text, $j);
+                    $done = false;
                 }
             }
         }

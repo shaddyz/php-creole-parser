@@ -21,7 +21,6 @@ class PreformattedText
             }
         }
         $preformattedText = new self(substr($text, $start, $end));
-        $preformattedText->inline = $inline;
         $text = substr($text, $end);
         return $preformattedText;
     }

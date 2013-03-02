@@ -21,7 +21,6 @@ class PreformattedBlock
             }
         }
         $preformattedBlock = new self(substr($text, $start, $end));
-        $preformattedBlock->inline = $inline;
         $text = substr($text, $end);
         return $preformattedBlock;
     }

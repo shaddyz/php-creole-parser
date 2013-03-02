@@ -5,7 +5,7 @@ include '../vendor/autoload.php';
 if (isset($argv[1])) {
     $testFile = strtolower($argv[1]) . '.txt';
 } else {
-    $textFile = 'creole1.0test.txt';
+    $testFile = 'creole1.0test.txt';
 }
 
 $wikiString = file_get_contents($testFile);

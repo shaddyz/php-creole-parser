@@ -19,6 +19,7 @@ class TextParagraph
     
     public static function isParagraphBreak($text)
     {
+        $text = ltrim($text, "\t ");
         if ($text === '') {
             return true;
         }
@@ -41,7 +42,7 @@ class TextParagraph
                 }
                 // no break
         }
-        if ("{{{\n" == substr($text, 0, 4)) {
+        if ("{{{\n" == substr($text, 0, 4) or '----' == substr($text, 0, 4)) {
             return true;
         }
         return false;

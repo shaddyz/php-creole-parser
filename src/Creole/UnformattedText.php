@@ -17,6 +17,19 @@ class UnformattedText
                     $i += 2;
                     break 2;
             }
+            if ('http://' == substr($text, $i, 7) or 'ftp://' == substr($text, $i, 6)) {
+                for ($j = $i; $j < $textLength; $j++) {
+                    if (' ' == $text[$j] or "\t" == $text[$i]) {
+                        break;
+                    }
+                }
+                if ('.' == $text[$j - 1] or ',' == $text[$j - 1]) {
+                    $j--;
+                }
+                $link = '[[' . substr($text, $i, $j - $i) . ']]';
+                $text = substr($text, 0, $i) . $link . substr($text, $j);
+                break;
+            }
             switch (substr($text, $i, 2)) {
                 case '**':
                 case '//':

@@ -4,5 +4,5 @@ namespace Creole;
 
 class OrderedList extends UnorderedList
 {
-    protected $markup = '#';
+    protected $htmlTag = 'ol';
 }
