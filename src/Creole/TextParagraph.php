@@ -17,11 +17,14 @@ class TextParagraph
         return $textParagraph;
     }
     
-    public static function isParagraphBreak($text)
+    public static function isParagraphBreak($text, $inList = null)
     {
         $text = ltrim($text, "\t ");
         if ($text === '') {
             return true;
+        }
+        if (is_null($inList)) {
+            $inList = '';
         }
         switch ($text[0]) {
             case '#':
@@ -30,12 +33,12 @@ class TextParagraph
                 return true;
                 // no break
             case "\n":
-                if (isset($text[1]) and "\n" == $text[1]) {
-                    return true;
-                }
+                return true;
                 break;
             case '*':
-                if (isset($text[1]) and '*' != $text[1]) {
+                if ('*' == $inList) {
+                    return true;
+                } elseif (isset($text[1]) and '*' != $text[1]) {
                     return true;
                 } else {
                     return false;

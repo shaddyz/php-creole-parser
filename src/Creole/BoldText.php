@@ -41,13 +41,13 @@ class BoldText
                 if ('**' == substr($text, 0, 2)) {
                     $text = substr($text, 2);
                     break;
-                } elseif (TextParagraph::isParagraphBreak(substr($text, 0, 4))) {
-                    break;
                 } elseif ("\n" == $text[0]) {
+                    if (TextParagraph::isParagraphBreak(substr($text, 1, 4))) {
+                        break;
+                    }
                     $text = substr($text, 1);
                     $textElement = new UnformattedText(' ');
                     $textElements[] = $textElement;
-                    break;
                 }
             }
         } while (!is_null($textElement));

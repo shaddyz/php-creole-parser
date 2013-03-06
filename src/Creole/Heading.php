@@ -10,7 +10,7 @@ class Heading
     public static function consume(&$text)
     {
         $trimmedText = ltrim($text);
-        if ($trimmedText[0] != '=') {
+        if (!isset($trimmedText[0]) or $trimmedText[0] != '=') {
             return null;
         }
         $text = $trimmedText;

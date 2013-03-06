@@ -14,7 +14,7 @@ class UnformattedText
                 case "\n":
                     break 2;
                 case '~':
-                    $i += 2;
+                    $i += (isset($text[$i + 1]) and "\n" == $text[$i + 1]) ? 1 : 2;
                     break 2;
             }
             if ('http://' == substr($text, $i, 7) or 'ftp://' == substr($text, $i, 6)) {

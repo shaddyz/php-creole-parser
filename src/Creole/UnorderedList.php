@@ -54,11 +54,11 @@ class UnorderedList
                 }
             }
             $text = substr($text, $i);
-            if (is_null($listElement = TextLine::consume($text))) {
+            if (is_null($listElement = ListElement::consume($text, $markup))) {
                 $listElement = new Blank();
-                if ("\n" == $text[0]) {
-                    $text = substr($text, 1);
-                }
+            }
+            if ("\n" == $text[0]) {
+                $text = substr($text, 1);
             }
             $listElement->level = $level;
             $listElements[] = $listElement;

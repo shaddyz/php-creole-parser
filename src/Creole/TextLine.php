@@ -17,9 +17,9 @@ class TextLine
         return $textLine;
     }
     
-    protected static function consumeTextElements(&$text)
+    protected static function consumeTextElements(&$text, $inList = null)
     {
-        if (TextParagraph::isParagraphBreak(substr($text, 0, 4))) {
+        if (TextParagraph::isParagraphBreak($text)) {
             return array();
         }
         
@@ -43,7 +43,7 @@ class TextLine
             }
         } while (!is_null($textElement));
         
-        if ("\n" == $text[0] and !TextParagraph::isParagraphBreak(substr($text, 0, 4))) {
+        if ("\n" == $text[0] and !TextParagraph::isParagraphBreak(substr($text, 1, 4), $inList)) {
             $textElements[] = new UnformattedText(' ');
             $text = substr($text, 1);
         }

@@ -15,8 +15,12 @@ class BlankParagraph
         $textLength = strlen($text);
         
         for ($i = 0; $i < $textLength; $i++) {
-            if ($text[$i] != ' ' and $text[$i] != "\t") {
+            if ($text[$i] == ' ' or $text[$i] == "\t") {
+                continue;
+            } elseif ("\n" == $text[$i]) {
                 break;
+            } else {
+                return null;
             }
         }
         
