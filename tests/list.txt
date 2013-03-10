@@ -1,0 +1,29 @@
+unnumbered lists are like
+* item a
+* item b
+* **bold item c**
+
+blank space is also permitted before lists like:
+  *   item a
+ * item b
+* item c
+ ** item c.a
+
+or you can number them
+# [[item 1]]
+# item 2
+# // italic item 3 //
+    ## item 3.1
+  ## item 3.2
+
+up to five levels
+* 1
+** 2
+*** 3
+**** 4
+***** 5
+
+* You can have
+multiline list items
+* this is a second multiline
+list item

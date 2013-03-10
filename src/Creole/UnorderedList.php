@@ -27,10 +27,10 @@ class UnorderedList
     {
         $listElements = array();
         $first = true;
+        $textLength = strlen($text);
         
         do {
             $level = 1;
-            $textLength = strlen($text);
             for ($i = 0; $i < $textLength; $i++) {
                 switch ($text[$i]) {
                     case $markup:
@@ -53,8 +53,10 @@ class UnorderedList
                         return $listElements;
                 }
             }
+            
             $text = substr($text, $i);
             if (is_null($listElement = ListElement::consume($text, $markup))) {
+                print $i . ' ' . $textLength . "\n";
                 $listElement = new Blank();
             }
             if ("\n" == $text[0]) {
@@ -62,6 +64,7 @@ class UnorderedList
             }
             $listElement->level = $level;
             $listElements[] = $listElement;
+            $textLength = strlen($text);
         } while ($textLength);
         
         return $listElements;

@@ -12,15 +12,15 @@ class ListElement
             return null;
         }
         
-        $textParagraph = new self();
-        $textParagraph->textLines = $textLines;
-        return $textParagraph;
+        $listElement = new self();
+        $listElement->textLines = $textLines;
+        return $listElement;
     }
     
-    protected static function consumeTextLines(&$text)
+    protected static function consumeTextLines(&$text, $markup)
     {
         $textLines = array();
-        while (!is_null($textLine = TextLine::consume($text))) {
+        while (!is_null($textLine = TextLine::consume($text, $markup))) {
             $textLines[] = $textLine;
         }
         

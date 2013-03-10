@@ -6,9 +6,9 @@ class TextLine
 {
     protected $textElements = array();
     
-    public static function consume(&$text)
+    public static function consume(&$text, $inList = null)
     {
-        if (!$textElements = self::consumeTextElements($text)) {
+        if (!$textElements = self::consumeTextElements($text, $inList)) {
             return null;
         }
         
