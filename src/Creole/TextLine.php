@@ -28,7 +28,7 @@ class TextLine
             'BoldText',
             'ItalicText',
             'Link',
-            //'Image',
+            'Image',
             'PreformattedText',
         );
         
