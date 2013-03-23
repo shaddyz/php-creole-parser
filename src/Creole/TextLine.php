@@ -60,10 +60,10 @@ class TextLine
     
     public function toHtml()
     {
-        $text = '';
+        $html = '';
         foreach ($this->textElements as $textElement) {
-            $text .= $textElement->toHtml();
+            $html .= $textElement->toHtml();
         }
-        return $text;
+        return $html;
     }
 }

@@ -1,1 +1,21 @@
-A high performance wiki creole parser written in PHP.
+==A high performance wiki creole parser written in PHP.==
+
+===What's Creole?===
+[[http://wikicreole.org|Creole]] is an awesome wiki markup that should be everyone's first choice for wikitext.
+
+===Parser Features===
+* Parses [[http://www.wikicreole.org/wiki/Creole1.0|Creole 1.0]] into a complete tree
+* Parse tree modeled after the HTML DOM
+* Converts tree into valid HTML
+* Can easily be extended to generate alternate formats
+* Entire parser uses a single regular expression
+* [[http://getcomposer.org/|Composer]] compatible
+* [[https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md|PSR-2]] compliant source code
+
+Licensed under the [[http://www.gnu.org/licenses/gpl.html|GNU GPL version 3]]
+
+===How to Use===
+Download the project into a directory named Creole in your vendor directory. Then add it to your composer.json file and regenerate the autoloader.
+
+Created by Shaddy Zeineddine
+Please [[mailto://shaddy@chunkofwood.com|email]] me with any feedback.
