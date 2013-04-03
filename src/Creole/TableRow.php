@@ -12,6 +12,11 @@ class TableRow
             return null;
         }
         
+        // consume trailing newline at end of row
+        if (isset($text[0]) and "\n" == $text[0]) {
+            $text = substr($text, 1);
+        }
+        
         $tableRow = new self();
         $tableRow->tableCells = $tableCells;
         return $tableRow;
