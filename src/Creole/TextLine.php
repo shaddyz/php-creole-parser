@@ -30,6 +30,7 @@ class TextLine
             'Link',
             'Image',
             'PreformattedText',
+            'LineBreak',
         );
         
         $textElements = array();

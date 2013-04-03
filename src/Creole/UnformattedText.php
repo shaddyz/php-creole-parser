@@ -45,6 +45,7 @@ class UnformattedText
             switch (substr($text, $i, 2)) {
                 case '**':
                 case '//':
+                case '\\\\':
                 case '[[':
                 case '{{':
                     if ($escape) {

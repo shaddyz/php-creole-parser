@@ -4,7 +4,7 @@ namespace Creole;
 
 class TableCell
 {
-    protected $text;
+    protected $textLine;
     protected $isHeader = false;
     
     public static function consume(&$text)
@@ -62,18 +62,13 @@ class TableCell
     
     public function __construct($text, $header = false)
     {
-        $this->text = trim($text);
+        $this->textLine = new TextLine($text);
         $this->isHeader = (boolean) $header;
     }
     
     public function toHtml()
     {
-        $html = $this->isHeader ? '<th>' : '<td>';
-        /*
-        foreach ($this->textElements as $textElement) {
-            $html .= $textElement->toHtml();
-        }*/
-        $html .= $this->text;
+        $html = ($this->isHeader ? '<th>' : '<td>') . $this->textLine->toHtml();
         return $html . ($this->isHeader ? '</th>' : '</td>') . "\n";
     }
 }
