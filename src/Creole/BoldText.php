@@ -48,6 +48,7 @@ class BoldText
                     $text = substr($text, 1);
                     $textElement = new UnformattedText(' ');
                     $textElements[] = $textElement;
+                    break;
                 }
             }
         } while (!is_null($textElement));
