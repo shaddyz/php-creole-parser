@@ -1,4 +1,18 @@
 {
+    "name": "shaddyz/creole",
+    "type": "library",
+    "description": "A high performance wiki creole parser written in PHP.",
+    "keywords": ["creole", "wiki", "parser", "wikitext", "markup"],
+    "homepage": "https://github.com/shaddyz/php-creole-parser",
+    "license": "GNU GPL v3",
+    "authors": [
+        {
+            "name": "Shaddy Zeineddine",
+            "email": "shaddy@chunkofwood.com",
+            "homepage": "http://sandbox.chunkofwood.com",
+            "role": "Developer"
+        }
+    ],
     "autoload": {
         "psr-0": {"Creole": "src/"}
     },
